@@ -1,0 +1,35 @@
+---
+title: "R Markdown Documents - Part 1"
+subtitle: "Analysis of Environmental Data"
+author: "**Justin Howard Herrmann Maynard**"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: TRUE
+    theme: readable
+---
+
+# Introduction:
+
+
+*Environmental Conservation:*
+
+*Water, Wetlands and Watersheds PhD Program*
+
+
+My name is **Justin** and my research focus will be to perform an integrated ecohydrological assessment of hydrologic flows and nutrient dynamics in the Connecticut River Watershed. 
+
+# Concepts:
+
+1. The ability to extract and manipulate data files
+2. Superior understanding of R and its commonly used and helpful functions
+3. Skillsets that will help me to become a stronger modeler for my ecohydrology interests
+4. Hypothesis testing
+
+# Course List:
+
+* Analysis of Environmental Data with associated lab
+* Intro to GIS
+* Watershed Management and Hydrology
+* Silviculture

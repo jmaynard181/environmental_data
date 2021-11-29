@@ -1,0 +1,97 @@
+---
+title: "code chunk demo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+#Setup chunk
+
+'''{r load_penguin_data, echo=TRUE, eval=TRUE}
+require(palmerpenguins)
+head(penguins)
+'''
+
+#my chunk
+'''{r simple pairplot}
+plot(penguins[, 3:5])
+'''
+
+#echo = FALSE will not show the code and wont be evaluated
+#for fig.asp, 1 is a square plot and 1/1.5 is a rectangle
+'''{r simple pairplot, fig.width=4, fig.asp = 1}
+plot(penguins[, 3:5])
+'''
+
+'''{r simple pairplot, fig.width=4, fig.asp = 1/1.5}
+plot(penguins[, 3:5])
+'''
+
+'''{r simple pairplot, eval = FALSE}
+plot(penguins{, 3:5}}
+'''
+
+
+#plot will not appear in redered document
+
+
+''''''{r simple pairplot, echo = FALSE}
+plot(penguins[, 3:5})]
+'''
+
+
+# Tabset Example {.tabset}
+
+## Tab 1
+Tab 1 contents
+
+## Tab 2
+Tab 2 contents
+
+## Tab 3
+Tab 3 contents
+
+# Next section
+Non-tabbed material
+
+#for a different looking tab
+
+# Tabset Example {.tabset . tabset-pills}
+
+###################
+
+# Different Penguin Plots {.tabset . tabset-pills}
+
+The following tabs contain different plot types
+
+
+## Histogram
+
+```{r flipper length histogram, fig. asp = 1/1.5}
+hist(penguins$flipper_length_mm)
+```
+
+
+
+## Another Histogram (Bill Length)
+
+```{r bill length histogram, echo =FALSE}
+hist(b)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+---
+title: "Justin's Project Homepage"
+author: "Justin Maynard"
+date: "11/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Welcome to Justins student page
+This is my first change
