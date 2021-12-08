@@ -1,0 +1,373 @@
+---
+title: 'Final Project: R Reference'
+author: "Justin Maynard"
+date: "12/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# R Reference Guide {.tabset .tabset-pills}
+
+
+## Loading Data and Packages
+
+Use these to show how to load the here and palmerpenguins packages - library() and require()
+Ginkgo data: use the 2021 ginkgo data to create a data.frame called ginkgo using:
+
+### library()
+
+Packages are collections of R functions, data, and compiled code in a well-defined format. The directory where packages are stored is called the library. R comes with a standard set of packages. Others are available for download and installation. Once installed, they have to be loaded into the session to be used.
+
+### require()
+
+The require() is designed to be used inside functions as it gives a warning message and returns a logical value say, FALSE if the requested package is not found and TRUE if the package is loaded. It is better to use the library() as it gives the error message if the package is not found during the package loading time
+
+### here()
+
+here() uses a reasonable heuristics to find your project's files, based on the current working directory at the time when the package is loaded. Use it as a drop-in replacement for file. path() , it will always locate the files relative to your project root. 
+
+### read.csv()
+
+The CSV file to be read should be either present in the current working directory or the directory should be set accordingly using the setwd(…) command in R. The CSV file can also be read from a URL using read. csv() function 
+
+## Data Structures
+### c()
+
+The function c() combines or concatenates its arguments into a vector (a 1-dimensional data structure consisting of 1 or more elements).
+
+*   All of the elements must be of the same type.
+*   I can’t combine character and numeric types in the same call to c()
+
+Here’s two examples using numeric and character data types:
+
+```{r}
+# Create a vector of numbers:
+num_vec  = c(1, 4, 8, 9, 13)
+```
+
+```{r}
+# Create a vector of characters:
+char_vec = c("a", "fish", "data is cool")
+```
+
+I can show the contents of a vector by typing the name of the vector, or using the print() function.
+
+```{r}
+## Typing the name of the vector into the console prints the contents
+num_vec
+```
+
+```{r}
+## The print() function accomplishes the same task:
+print(char_vec)
+```
+
+### length()
+
+The length() function determines how many elements are in a vector.
+
+### The length function will give an output of the number of values in our example vector
+
+```{R}
+length(num_vec)
+```
+
+### matrix()
+
+matrix()
+The matrix() function constructs a matrix in R. This function has three arguments that lets the function know how the elements need to be arranged.
+
+ * The first argument is the collection of elements that will be arranged by the function. You can use a vector as the first element.
+ 
+ * The argument byrow will indicate if we want the matrix to be filled by rows. If we do, we place byrow = TRUE in the function, if we want the matrix filled with just columns, we place byrow = FALSE in the matrix() function.
+ 
+ * The third argument, nrow, indicates how many rows the matrix should have and ncol indicates the columns.
+ 
+ * Something to note while looking at the second example, I only created one row because the number of rows you include should be a multiple of your data length.
+
+I will use the num_vec vector from the previous example to create a matrix that has five rows and four columns  
+
+```{r}
+num_matrix <- matrix(num_vec, nrow= 5, ncol= 3)
+
+num_matrix
+```
+
+### I can also create a matrix with the num_vec vector that is filled row-wise rather than
+
+```{r}
+num_matrix_2 <- matrix(num_vec, byrow= TRUE, nrow= 1)
+
+num_matrix_2
+```
+
+### data.frame()
+
+data.frame()
+The data.frame() function is used to construct a data frame.A data frame can contain a combination of different vectors, matrices, and arguments.
+ 
+ * A data frame can contain different types of data such as numerical, logical, and character data.
+ 
+ * The columns in a data frame each contain one value from the variables and each row contains one set of values from each column.
+ 
+ * All elements in a column have the same data type but different columns can have different data types.
+
+###using data.frame to join two vectors
+
+```{r}
+my_vec = rep(1:3, 5)
+my_bool_vec<-my_vec == 3
+data.frame(my_vec, my_bool_vec)
+```
+
+###using row.names with data.frame()
+
+```{r}
+num_vec  = c(1, 4, 8, 9, 13)
+num_matrix <- matrix(num_vec, nrow= 5, ncol= 3)
+data.frame(num_matrix, row.names = c("row_1", "row_2", "row_3", "row_4", "row_5"))
+```
+
+### nrow()
+
+Use the ginkgo data.frame to create examples of:
+nrow()
+
+```{r}
+require(here)
+ginkgo<-read.csv(here("data","ginkgo_data_2021.csv"))
+nrow(ginkgo)
+```
+
+Use the ginkgo data.frame to create examples of
+
+```{r}
+ncol(ginkgo)
+```
+
+### ncol ()
+
+Use the ginkgo data.frame to create examples of:
+ncol()
+
+```{r}
+nrow(ginkgo)
+```
+
+### dim()
+
+Use the ginkgo data.frame to create examples of:
+dim()
+
+```{r}
+dim(ginkgo)
+```
+
+## Subsetting
+
+### $
+
+$ Subset a data frame by name: select one of the columns in the ginkgo data
+
+### []
+
+[] Use subset by position to:
+select first row of the ginkgo data
+is used for subsetting vectors, arrays and matrices (and other such objects).
+
+```{r}
+ginkgo[1,0]
+ginkgo [1,]
+```
+
+### subset()
+
+subset() Use this function to retrieve all the data for Adelie penguins (in the species column) from the penguins dataset.
+
+```{r}
+library(palmerpenguins)
+penguin_ade <- subset(penguins, species == "Adelie")
+```
+
+## Numerical Data Exploration
+### summary()
+
+The function summary()
+
+### mean()
+
+The function mean()
+
+### sd()
+
+The function sd()
+
+
+## Graphical Data Exploration
+### plot() required arguments
+
+Scatterplot: 
+
+Using the ginkgo data, create a scatterplot of max leaf depth (x) and max leaf width (y)
+
+```{r}
+plot(x = ginkgo$max_depth, y = ginkgo$max_width, 
+     xlab = "Max depth", ylab = "Max width", main = "Ginkgo leaves")
+```
+
+Plot using all arguments:
+
+```{r}
+plot(x = ginkgo$max_depth, y = ginkgo$max_width, 
+     xlab = "Max depth", ylab = "Max width", main = "Ginkgo leaves", col = "2", pch = 21, cex = 1.5, xlim = c(0, max(ginkgo$max_depth)+20), ylim = c(0, max(ginkgo$max_width)+20))
+```
+
+potential arguments to include:
+
+*   col = col =  In R, the color black is denoted by col = 1 in most plotting functions, red is denoted by col = 2 , and green is denoted by col = 3 . So if you're plotting multiple groups of things, it's natural to plot them using colors 1, 2, and 3
+
+*   pch = pch = The default R plot pch symbol is 1, which is an empty circle. You can change this to pch = 19 (solid circle) or to pch = 21 (filled circle). To change the color and the size of points, use the following arguments: col : color (hexadecimal color code or color name)
+
+*   cex = cex = number indicating the amount by which plotting text and symbols should be scaled relative to the default. 1=default, 1.5 is 50% larger, 0.5 is 50% smaller, etc
+
+*   main =  main = used to create a title
+Example: main = “Title of Graph”
+
+*   xlab = Example: main = “Title of Graph”
+xlab = used to label the x axis 
+
+*   ylab = ylab = used to label the y axis
+
+*   xlim = xlim = used to set limits of the x axis. Ex: c(0, max(ginkgo$max_depth)+20)
+
+*   ylim = ylim =  used to set limits of the y axis
+
+### hist()
+
+hist(): Create a histogram of penguin flipper lengths.
+Required arguments:
+breaks = It shows the breaks, which are the cutoff points for the bins. It shows the counts, intensity/density for each bin (same thing but two different names for R version compatibility), the midpoints of each bin, and then the name of the variable, whether the bins are equidistant, and the class of the object.
+
+```{r}
+hist(penguins$flipper_length_mm, xlab = "Flipper length", main = "Penguin Flipper Length", breaks = 4)
+```
+
+### boxplot()
+
+Boxplot()
+Your must include two examples using the ginkgo data:
+a simple boxplot of ginkgo petiole lengths
+
+```{r}
+boxplot(ginkgo$petiole_length, main = "Ginkgo Petiole Length")
+```
+
+conditional boxplot of one of the continuous variables conditioned on the seeds_present column.
+
+```{r}
+boxplot(data = ginkgo, max_width ~ seeds_present, "Max width by Seeds present", xlab = "Seeds present", ylab = "Max Leaf Width")
+```
+
+Create a 4-panel figure of histograms, arranged in a 2 by 2 grid. You may use any data you like, but each histogram must be different and have appropriate titles and axes. - par() required arguments: - mrow =
+
+```{r}
+par(mfrow = c(2,2))
+```
+
+## Distribution Functions
+
+This page has a helpful summary of what each function does: https://www.stat.umn.edu/geyer/old/5101/rlook.html
+
+This is the in class assignment and has some useful information as well
+https://michaelfrancenelson.github.io/environmental_data/assignments/in_class_probabilities_2_functions_calculations.html
+
+dnorm, pnorm, qnorm and rnorm all pull numbers from a normal distribution.
+
+dnorm calculates the probability density (or mass) of a single event based on a normally distributed population, for example the probability of observing a sample mean 4.3cm for penguin flipper length.
+
+Pnorm can be used to calculate the probability of observing values on above or below a critical value when calculating a confidence interval. 
+
+
+Density, distribution function, quantile function and random generation for the normal distribution with mean equal to mean and standard deviation equal to sd.
+
+### dnorm()
+
+dnorm()
+dnorm() calculates the probability density function for a given value in a normal distribution. It finds the value of y (height of the curve) for a given value of x. The mean and standard deviation of the distribution must be provided.
+
+```{r}
+dnorm(1.5, mean = 0, sd = 1)
+```
+
+### pnorm()
+
+pnorm()
+pnorm() calculates the cumulative distribution function for a given value in a normal distribution. It finds the probability of the given value OR LESS occurring. The mean and standard deviation of the distribution must be provided.
+```{r}
+pnorm(1.5, mean = 0, sd = 1)
+```
+
+To find the probability of the given value OR MORE, use the "lower.tail = FALSE" option.
+
+```{r}
+pnorm(1.5, mean = 0, sd = 1, lower.tail = FALSE)
+```
+
+### qnorm()
+
+The function qnorm()
+
+### dbinom()
+The _binom functions work to generate the binomial distribution with the density, distribution, and quantile functions as well as with random number generation using parameters size and prob.
+This is conventionally interpreted as the number of ‘successes’ in size trials.
+
+### pbinom()
+
+pbinom(): the cumulative mass function
+
+### qbinom()
+
+qbinom(): the quantile function
+
+
+### Arguments:
+
+x, q	:   vector of quantiles.
+
+p	    :   vector of probabilities.
+
+n     :   number of observations. If length(n) > 1, the length is taken to be the number required.
+
+size	:   number of trials (zero or more).
+
+prob	:   probability of success on each trial.
+log, log.p	
+logical; if TRUE, probabilities p are given as log(p).
+lower.tail	
+logical; if TRUE (default), probabilities are P[X ≤ x], otherwise, P[X > x].
+...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+---
+title: "Final R Project Part 2 Data Analysis"
+author: "Justin Maynard"
+date: "12/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+require(here)
+rm(list = ls())
+
+delomys = read.csv(here("data", "delomys.csv"))
+
+head(delomys)
+
+summary(delomys$body_mass)
+
+summary(delomys$body_length)
+
+shapiro.test(delomys$body_mass)
+
+shapiro.test(delomys$body_length)
+
+plot(body_length ~ body_mass, data = delomys)
+
+hist(delomys$body_mass, xlab = "Body Mass", main = "Delomy Body Mass", breaks = 8)
+
+hist(delomys$body_length, xlab = "Body Length", main = "Delomys Body Mass", breaks = 8)
+
+boxplot(data = delomys, body_mass ~ binomial, main = "Body Mass by Species", xlab = "Body Mass", ylab = "Species")
+
+boxplot(data = delomys, body_mass ~ sex, main = "Body Mass by Sex", xlab = "Body Mass", ylab = "Sex")
+
+boxplot(data = delomys, body_mass ~ sex + binomial, main = "Body Mass by Species and Sex", xlab = "Body Mass", ylab = "Species and Sex")
+
+
+```
+
+
+
