@@ -12,3 +12,6 @@ Welcome to Justins student page
 This is my first change
 
 [Final Project: R Reference Guide](final_R_reference.html)
+
+
+[Comprehensive-code-for-r](Lab-11-RMD-Complete-Version.html)
