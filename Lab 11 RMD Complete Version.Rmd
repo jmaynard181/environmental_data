@@ -380,7 +380,6 @@ persp(
 
 
 ```{r}
-install.packages("rgl")
 require(rgl)
 
 persp3d(
